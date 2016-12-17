@@ -1,0 +1,64 @@
+<form name="productName" class="form-horizontal" novalidate>
+	<fieldset>
+		<legend>Basic Product Information</legend>
+		<!-- ng-class will set class has-error if the field is in $invalid state -->
+		<div class="form-group" ng-class="{'has-error': productName.inputProductName.$invalid}">
+			<!-- label for links the label to the html element with the corresponding id value -->
+			<!-- placeholder attribute indicates what text will be populated in the input element initially -->
+			<label for="inputProductName" class="col-md-2 control-label">Product Name</label>
+			<div class="col-md-4">
+				<input id="inputProductName" name="inputProductName" class="form-control" type="text" placeholder="Product Name (required)" ng-model="vm.product.productName" required ng-minlength="4" ng-maxlength="12"/>
+			</div>
+			<!-- ng-messages will look at the $error state, and then find the first ng-message that matches the problem -->
+			<!-- only show validation if the input field is dirty, indicating the user has tried to input something -->
+			<span class="help-block has-error" ng-messages="productName.inputProductName.$error" ng-show="productName.inputProductName.$dirty">
+				<span ng-message="required">Product name is required</span>
+				<span ng-message="minlength">Product name must be at least 4 characters</span>
+				<span ng-message="maxlength">Product name must be at most 12 characters</span>
+			</span>
+		</div>
+		<div class="form-group" ng-class="{'has-error': productName.inputProductCode.$invalid}">
+			<label class="col-md-2 control-label" for="inputProductCode">Product Code </label>
+				<div class="col-md-4">
+					<!-- ui-mask is a directive that enforces a certain format on the field data entry. It also prevents user from entering any data 
+					in format different from that specified by the mask-->
+					<!-- For validation, need form name, need name for input element and need ng-model directive -->
+					<input id="inputProductCode" name="inputProductCode" class="form-control" type="text" ui-mask="AAA-**** (required)" ng-model="vm.product.productCode" required/>
+				</div>
+			</label>
+			<span class="help-block has-error" ng-show="productName.inputProductCode.$invalid && productName.inputProductCode.$dirty">Product Code is required.</span>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label"
+                   for="inputProductDate">Availability</label>
+		    <div class="col-md-4">
+				<div class="input-group">
+					<!-- TODO: figure out why date disappears from field when saving -->
+					<input id="inputProductDate" type="text" class="form-control" uib-datepicker-popup is-open="vm.opened" ng-model="vm.product.releaseDate"/>
+					<span class="input-group-btn">
+						<button class="btn btn-default" ng-click="vm.openCalendar($event)">
+							<i class="glyphicon glyphicon-calendar"/>
+						</button>
+					</span>
+				</div>
+		    </div>
+		</div>
+		<div class="form-group">
+			<label for="inputDescription" class="col-md-2 control-label">Product Description</label>
+			<div class="col-md-10">
+				<!-- rows indicates the number of lines to display in the text area -->
+				<textarea id="inputDescription" class="form-control" placeholder="Product Description" rows="3" ng-model="vm.product.description"/>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="col-md-4 col-md-offset-2">
+				<span>
+					<button class="btn btn-primary" style="width:80px;margin-right:10px" ng-disabled="productName.$invalid" ng-click="vm.submit()">Save</button>						
+				</span>
+				<span>
+					<button class="btn btn-default" style="width:70px" ng-click="vm.cancel()">Cancel</button>
+				</span>	
+			</div>			
+		</div>
+	</fieldset>
+</form>

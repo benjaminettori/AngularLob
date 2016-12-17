@@ -1,0 +1,16 @@
+<div class="panel panel-primary">
+    <div class="panel-heading" style="font-size:large">
+        {{vm.title}}
+    </div>
+    
+    <div class="panel-body">
+        <div class="wizard">
+            <!-- ui-sref refers to a child state, prefixed with a dot, such as .info -->
+            <!-- ui-sref-active indicates which css class to apply when the state is activated -->
+            <a ui-sref=".info" ui-sref-active="active">Basic Information</a>
+            <a ui-sref=".price" ui-sref-active="active">Price</a>
+            <a ui-sref=".tags" ui-sref-active="active">Tags</a>
+        </div>
+        <div ui-view></div>
+    </div>
+</div>

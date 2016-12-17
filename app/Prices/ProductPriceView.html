@@ -1,0 +1,24 @@
+<div class="content">
+    <div class="panel panel-primary">
+        <div class="panel-heading" style="font-size:large">{{title}}</div>
+
+        <div class="panel-body">
+
+            <div class="col-md-12">
+                <canvas chart-data="dataAmount"
+                     chart-series="seriesAmount"
+                     chart-labels="seriesLabels"
+                     class="chart chart-bar"></canvas>
+            </div>
+
+            <div class="col-md-12">
+                <canvas chart-data="dataPercent"
+                     chart-series="seriesPercent"
+                     chart-labels="seriesLabelsPercent"
+                     chart-options="options"
+                     chart-dataset-override="datasetOverride"
+                     class="chart chart-bar"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
