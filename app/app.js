@@ -20,6 +20,7 @@
 	app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 		// Define routing.
 		// Define default route. Giving it the default url will activate the route whose url matches with the value specified.
+		// Here we user $urlRouterProvider because $stateProvider does not handle invalid routes.
 		$urlRouterProvider.otherwise('/');
 		
 		$stateProvider
@@ -33,6 +34,8 @@
 			controller: 'ProductsCtrl as vm'
 		})
 		.state('productEdit', {
+			// if the state is abstract, it can't be transitioned to
+			// It was child states below like productEdit.info
 			abstract: true,
 			url: '/products/edit/:productId',
 			templateUrl: 'app/Products/productEditView.html',
